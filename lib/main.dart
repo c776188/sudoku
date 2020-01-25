@@ -35,21 +35,23 @@ class _TicTacToePageState extends State<TicTacToePage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Expanded(
-              child: GridView.count(
+          GridView.count(
             crossAxisCount: 3,
-            children: <Widget>[
-              Icon(Icons.ac_unit),
-              Icon(Icons.airport_shuttle),
-              Icon(Icons.all_inclusive),
-              Icon(Icons.beach_access),
-              Icon(Icons.cake),
-              Icon(Icons.free_breakfast),
-              Icon(Icons.phone_android),
-              Icon(Icons.satellite),
-              Icon(Icons.watch)
-            ],
-          )),
+            shrinkWrap: true,
+            children: List.generate(9, (index) {
+              return Container(
+                  padding: EdgeInsets.all(8.0),
+                  child: FlatButton(
+                    child: Text(
+                      "X",
+                      style: TextStyle(fontSize: 50.0),
+                    ),
+                    color: Colors.grey, // 設置背景色
+                    textColor: Colors.white, // 設置文字顏色
+                    onPressed: () {}, // enable按鈕),
+                  ));
+            }),
+          ),
           Center(
             child: ButtonTheme(
               minWidth: 200,
