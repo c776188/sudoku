@@ -30,10 +30,12 @@ class TTTButton {
   String text;
   bool enabled;
 
-  TTTButton({this.id, this.text = "", this.enabled = false});
+  TTTButton({this.id, this.text = "", this.enabled = true});
 }
 
 class _TicTacToePageState extends State<TicTacToePage> {
+  bool player = true; // true == O, false == X
+
   List<TTTButton> tButtons;
 
   void initState() {
@@ -52,7 +54,13 @@ class _TicTacToePageState extends State<TicTacToePage> {
 
   void _playGame(index) {
     setState(() {
-      tButtons[index].enabled = true;
+      if (!tButtons[index].enabled) {
+        return;
+      }
+
+      tButtons[index].enabled = false;
+      tButtons[index].text = player ? "O" : "X";
+      player = !player;
     });
   }
 
@@ -73,7 +81,7 @@ class _TicTacToePageState extends State<TicTacToePage> {
                   padding: EdgeInsets.all(8.0),
                   child: FlatButton(
                     child: Text(
-                      tButtons[index].enabled ? "X" : "",
+                      tButtons[index].enabled ? "" : tButtons[index].text,
                       style: TextStyle(fontSize: 50.0),
                     ),
                     color: Colors.grey,
