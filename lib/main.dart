@@ -25,7 +25,37 @@ class TicTacToePage extends StatefulWidget {
   _TicTacToePageState createState() => _TicTacToePageState();
 }
 
+class TTTButton {
+  final id;
+  String text;
+  bool enabled;
+
+  TTTButton({this.id, this.text = "", this.enabled = false});
+}
+
 class _TicTacToePageState extends State<TicTacToePage> {
+  List<TTTButton> tButtons;
+
+  void initState() {
+    tButtons = <TTTButton>[
+      new TTTButton(),
+      new TTTButton(),
+      new TTTButton(),
+      new TTTButton(),
+      new TTTButton(),
+      new TTTButton(),
+      new TTTButton(),
+      new TTTButton(),
+      new TTTButton(),
+    ];
+  }
+
+  void _playGame(index) {
+    setState(() {
+      tButtons[index].enabled = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,12 +73,14 @@ class _TicTacToePageState extends State<TicTacToePage> {
                   padding: EdgeInsets.all(8.0),
                   child: FlatButton(
                     child: Text(
-                      "X",
+                      tButtons[index].enabled ? "X" : "",
                       style: TextStyle(fontSize: 50.0),
                     ),
-                    color: Colors.grey, // 設置背景色
-                    textColor: Colors.white, // 設置文字顏色
-                    onPressed: () {}, // enable按鈕),
+                    color: Colors.grey,
+                    textColor: Colors.white,
+                    onPressed: () {
+                      _playGame(index);
+                    },
                   ));
             }),
           ),
