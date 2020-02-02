@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:developer';
 
 void main() => runApp(MyApp());
 
@@ -61,7 +62,54 @@ class _TicTacToePageState extends State<TicTacToePage> {
       tButtons[index].enabled = false;
       tButtons[index].text = player ? "O" : "X";
       player = !player;
+      _checkWin(index);
     });
+  }
+
+  void _checkWin(index) {
+    String winText = "";
+
+    int row = (index / 3).toInt();
+    int col = index % 3;
+
+    // check row
+    if (tButtons[row * 3].text == tButtons[row * 3 + 1].text &&
+        tButtons[row * 3].text == tButtons[row * 3 + 2].text) {
+      winText = tButtons[row * 3].text;
+    }
+
+    // check column
+    if (tButtons[col + 3 * 0].text == tButtons[col + 3 * 1].text &&
+        tButtons[col + 3 * 0].text == tButtons[col + 3 * 2].text) {
+      winText = tButtons[col * 3].text;
+    }
+
+    // check \
+    if (index == 4 &&
+        tButtons[index].text == tButtons[0].text &&
+        tButtons[index].text == tButtons[8].text) {
+      winText = tButtons[index].text;
+    }
+
+    // check /
+    if (index == 4 &&
+        tButtons[index].text == tButtons[2].text &&
+        tButtons[index].text == tButtons[6].text) {
+      winText = tButtons[index].text;
+    }
+
+    if (winText != "") {
+      log('aaaa: $winText');
+      // show winner msg
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(content: Text(winText + ' WIN!'));
+          });
+
+      // restart
+      initState();
+    }
   }
 
   @override
