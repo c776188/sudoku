@@ -22,17 +22,24 @@ class GameHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('First Route'),
+        title: Text('Game Home'),
       ),
       body: Center(
-        child: RaisedButton(
-          child: Text('Open route'),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => TicTacToePage(title: 'Tic Tac Toe Page')),
-            );
-          },
+        child: ButtonTheme(
+          minWidth: 200,
+          height: 80,
+          child: RaisedButton(
+            color: Colors.blue,
+            child: Text('Tic Tac Toe'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        TicTacToePage(title: 'Tic Tac Toe Page')),
+              );
+            },
+          ),
         ),
       ),
     );

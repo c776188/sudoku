@@ -125,12 +125,25 @@ class _TicTacToePageState extends State<TicTacToePage> {
               minWidth: 200,
               height: 80,
               child: RaisedButton(
-                color: Colors.blue,
+                color: Colors.pinkAccent,
                 child: Text('Restart'),
                 onPressed: () {
                   setState(() {
                     initState();
                   });
+                },
+              ),
+            ),
+          ),
+          Center(
+            child: ButtonTheme(
+              minWidth: 200,
+              height: 80,
+              child: RaisedButton(
+                color: Colors.pinkAccent,
+                child: Text('Back Home'),
+                onPressed: () {
+                  Navigator.pop(context);
                 },
               ),
             ),
