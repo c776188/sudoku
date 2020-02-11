@@ -19,6 +19,10 @@ class _TicTacToePageState extends State<TicTacToePage> {
   @override
   void initState() {
     super.initState();
+    _initData();
+  }
+
+  void _initData() async {
     player = true;
     tButtons = <TTTButton>[
       new TTTButton(),
@@ -88,7 +92,9 @@ class _TicTacToePageState extends State<TicTacToePage> {
           });
 
       // restart
-      initState();
+      setState(() {
+        _initData();
+      });
     }
   }
 
@@ -129,7 +135,7 @@ class _TicTacToePageState extends State<TicTacToePage> {
                 child: Text('Restart'),
                 onPressed: () {
                   setState(() {
-                    initState();
+                    _initData();
                   });
                 },
               ),
