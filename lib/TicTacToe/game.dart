@@ -70,16 +70,16 @@ class _TicTacToePageState extends State<TicTacToePage> {
     }
 
     // check \
-    if (index == 4 &&
-        tButtons[index].text == tButtons[0].text &&
-        tButtons[index].text == tButtons[8].text) {
+    if ((index == 0 || index == 4 || index == 8) &&
+        tButtons[4].text == tButtons[0].text &&
+        tButtons[4].text == tButtons[8].text) {
       winText = tButtons[index].text;
     }
 
     // check /
-    if (index == 4 &&
-        tButtons[index].text == tButtons[2].text &&
-        tButtons[index].text == tButtons[6].text) {
+    if ((index == 2 || index == 4 || index == 6) &&
+        tButtons[4].text == tButtons[2].text &&
+        tButtons[4].text == tButtons[6].text) {
       winText = tButtons[index].text;
     }
 
@@ -126,35 +126,36 @@ class _TicTacToePageState extends State<TicTacToePage> {
                   ));
             }),
           ),
-          Center(
-            child: ButtonTheme(
-              minWidth: 200,
-              height: 80,
-              child: RaisedButton(
-                color: Colors.pinkAccent,
-                child: Text('Restart'),
-                onPressed: () {
-                  setState(() {
-                    _initData();
-                  });
-                },
+          Flex(
+            direction: Axis.horizontal,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ButtonTheme(
+                minWidth: 150,
+                height: 80,
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(18.0),
+                      side: BorderSide(color: Colors.pinkAccent)),
+                  color: Colors.pinkAccent,
+                  child: Text('Restart'),
+                  onPressed: () {
+                    setState(() {
+                      _initData();
+                    });
+                  },
+                ),
               ),
-            ),
+            ],
           ),
-          Center(
-            child: ButtonTheme(
-              minWidth: 200,
-              height: 80,
-              child: RaisedButton(
-                color: Colors.pinkAccent,
-                child: Text('Back Home'),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ),
-          )
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        child: Icon(Icons.home),
+        backgroundColor: Colors.green,
       ),
     );
   }

@@ -29,6 +29,9 @@ class GameHome extends StatelessWidget {
           minWidth: 200,
           height: 80,
           child: RaisedButton(
+            shape: RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(18.0),
+                side: BorderSide(color: Colors.blue)),
             color: Colors.blue,
             child: Text('Tic Tac Toe'),
             onPressed: () {
