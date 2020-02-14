@@ -60,13 +60,13 @@ class _TicTacToePageState extends State<TicTacToePage> {
     // check row
     if (tButtons[row * 3].text == tButtons[row * 3 + 1].text &&
         tButtons[row * 3].text == tButtons[row * 3 + 2].text) {
-      winText = tButtons[row * 3].text;
+      winText = tButtons[index].text;
     }
 
     // check column
     if (tButtons[col + 3 * 0].text == tButtons[col + 3 * 1].text &&
         tButtons[col + 3 * 0].text == tButtons[col + 3 * 2].text) {
-      winText = tButtons[col * 3].text;
+      winText = tButtons[index].text;
     }
 
     // check \
